@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupRubbish : MonoBehaviour {
+	public GameObject safeZone;
+	public Vector3 position;
+	public Vector3 scale;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +18,7 @@ public class PickupRubbish : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
-		print ("OnTriggerEnter " + col);
+		Instantiate (safeZone, transform.position + position, Quaternion.identity);
 		Destroy (this.gameObject);
 	}
 }
