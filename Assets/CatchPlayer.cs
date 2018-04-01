@@ -15,12 +15,10 @@ public class CatchPlayer : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter2D (Collider2D col) {
-		if (col.tag == "Player") {
+	void OnCollisionEnter2D (Collision2D col) {
+		if (col.gameObject.tag == "Player") {
 			print ("Player dies");
 			SceneManager.LoadScene ("GameOver");
-		} else {
-			print (col.tag);
 		}
 	}
 }
