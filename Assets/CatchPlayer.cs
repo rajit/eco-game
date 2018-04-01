@@ -19,6 +19,8 @@ public class CatchPlayer : MonoBehaviour {
 		if (col.tag == "Player") {
 			print ("Player dies");
 			SceneManager.LoadScene ("GameOver");
+		} else {
+			print (col.tag);
 		}
 	}
 }
