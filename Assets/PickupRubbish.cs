@@ -18,7 +18,10 @@ public class PickupRubbish : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
-		Instantiate (safeZone, transform.position + position, Quaternion.identity);
-		Destroy (this.gameObject);
+		if (col.tag == "Player") {
+			
+			Instantiate (safeZone, transform.position + position, Quaternion.identity);
+			Destroy (this.gameObject);
+		}
 	}
 }
