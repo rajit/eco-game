@@ -22,9 +22,9 @@ public class RubbishGenerator : MonoBehaviour {
 		// terrain size z
 		terrainLength = (int)(terrain.bounds.max.y - terrain.bounds.min.y);
 		// terrain x position
-		terrainPosX = (int)terrain.transform.position.x;
+		terrainPosX = (int)terrain.bounds.min.x;
 		// terrain z position
-		terrainPosY = (int)terrain.transform.position.y;
+		terrainPosY = (int)terrain.bounds.min.y;
 	}
 	
 	// Update is called once per frame

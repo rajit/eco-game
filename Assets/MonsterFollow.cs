@@ -13,37 +13,25 @@ public class MonsterFollow : MonoBehaviour
 	private Vector3 m_LastTargetPosition;
 	private Vector3 m_CurrentVelocity;
 	private Vector3 m_LookAheadPos;
+//	private Rigidbody2D rb;
 
 	// Use this for initialization
-	private void Start()
+	void Start()
 	{
 		m_LastTargetPosition = target.position;
 		m_OffsetZ = (transform.position - target.position).z;
 		transform.parent = null;
+//		rb = GetComponent<Rigidbody2D> ();
 	}
 
 	// FixedUpdate is called during physics update phase
-	private void FixedUpdate()
+	void FixedUpdate()
 	{
-		// only update lookahead pos if accelerating or changed direction
-		float xMoveDelta = (target.position - m_LastTargetPosition).x;
-
-		bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
-
-//		if (updateLookAheadTarget)
-//		{
-//			m_LookAheadPos = lookAheadFactor*Vector3.right*Mathf.Sign(xMoveDelta);
-//		}
-//		else
-//		{
-//			m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime*lookAheadReturnSpeed);
-//		}
-		m_LookAheadPos = Vector3.zero;
-
-		Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward*m_OffsetZ;
+		Vector3 aheadTargetPos = target.position + Vector3.forward * m_OffsetZ;
 		Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
 
 		transform.position = newPos;
+//		rb.MovePosition (aheadTargetPos);
 
 		m_LastTargetPosition = target.position;
 	}
