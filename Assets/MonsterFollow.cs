@@ -14,13 +14,29 @@ public class MonsterFollow : MonoBehaviour
 	private Vector3 m_CurrentVelocity;
 	private Vector3 m_LookAheadPos;
 //	private Rigidbody2D rb;
+	private Vector3 previousPos;
+	private AudioSource myAudio;
 
 	// Use this for initialization
 	void Start()
 	{
 		m_OffsetZ = (transform.position - target.position).z;
 		transform.parent = null;
+		myAudio = GetComponent<AudioSource> ();
 //		rb = GetComponent<Rigidbody2D> ();
+	}
+
+	void Update ()
+	{
+		Vector3 vel = (transform.position - previousPos) / Time.deltaTime;
+		if (vel.magnitude >= 1) {
+			if (myAudio.mute) {
+				myAudio.mute = false;
+			}
+		} else if (!myAudio.mute) {
+			myAudio.mute = true;
+		}
+		previousPos = transform.position;
 	}
 
 	// FixedUpdate is called during physics update phase
@@ -28,7 +44,6 @@ public class MonsterFollow : MonoBehaviour
 	{
 		Vector3 aheadTargetPos = target.position + Vector3.forward * m_OffsetZ;
 		Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
-		AudioSource myAudio = GetComponent<AudioSource> ();
 		if (myAudio != null) {
 			Vector3 distance = transform.position - target.position;
 			myAudio.volume = (float) (1 * Math.Pow (5 / (Mathf.Clamp (distance.magnitude, 4, 9) - 4), 4));
