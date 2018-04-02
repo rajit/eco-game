@@ -15,10 +15,10 @@ public class ConstraintToPlayArea : MonoBehaviour {
 		myCollider = GetComponent<BoxCollider2D> ();
 		float halfHeight = myCollider.size.y / 2;
 		float halfWidth = myCollider.size.x / 2;
-		minY = target.bounds.min.y + (myCollider.offset.y - halfHeight);
-		maxY = target.bounds.max.y - (myCollider.offset.y + halfHeight);
-		minX = target.bounds.min.x + (myCollider.offset.x - halfWidth);
-		maxX = target.bounds.max.x - (myCollider.offset.x + halfWidth);
+		minY = target.bounds.min.y + halfHeight - myCollider.offset.y;
+		maxY = target.bounds.max.y - halfHeight - myCollider.offset.y;
+		minX = target.bounds.min.x + halfWidth - myCollider.offset.x;
+		maxX = target.bounds.max.x - halfWidth - myCollider.offset.x;
 	}
 
 	// Update is called once per frame
