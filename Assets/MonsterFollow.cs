@@ -28,6 +28,11 @@ public class MonsterFollow : MonoBehaviour
 	{
 		Vector3 aheadTargetPos = target.position + Vector3.forward * m_OffsetZ;
 		Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
+		AudioSource myAudio = GetComponent<AudioSource> ();
+		if (myAudio != null) {
+			Vector3 distance = transform.position - target.position;
+			myAudio.volume = (float) (1 * Math.Pow (5 / (Mathf.Clamp (distance.magnitude, 4, 9) - 4), 4));
+		}
 
 		transform.position = newPos;
 //		rb.MovePosition (aheadTargetPos);
