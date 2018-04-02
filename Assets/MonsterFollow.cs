@@ -18,7 +18,6 @@ public class MonsterFollow : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		m_LastTargetPosition = target.position;
 		m_OffsetZ = (transform.position - target.position).z;
 		transform.parent = null;
 //		rb = GetComponent<Rigidbody2D> ();
@@ -32,7 +31,5 @@ public class MonsterFollow : MonoBehaviour
 
 		transform.position = newPos;
 //		rb.MovePosition (aheadTargetPos);
-
-		m_LastTargetPosition = target.position;
 	}
 }

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PickupRubbish : MonoBehaviour {
 	public GameObject safeZone;
-	public Vector3 position;
+	private Vector3 position;
 	public Vector3 scale;
 	public AudioClip clip;
 
 	// Use this for initialization
 	void Start () {
+		BoxCollider2D collider = safeZone.GetComponent<BoxCollider2D> ();
+		position = collider.offset;
 	}
 	
 	// Update is called once per frame
