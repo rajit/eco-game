@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 
 public class Pathfinder2D : MonoBehaviour 
 {
@@ -97,7 +98,10 @@ public class Pathfinder2D : MonoBehaviour
 
     public void RecalculateMap ()
 	{
-		Create2DMap ();
+		ThreadStart thread = delegate {
+			Create2DMap ();
+		};
+		thread.Invoke();
 	}
 
     #region map
