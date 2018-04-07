@@ -947,7 +947,7 @@ MonoBehaviour:
   SearchPerSecond: 5
   Player: {fileID: 1194402898}
   SearchDistance: 20
-  Speed: 5
+  Speed: 10
 --- !u!1001 &1983982999
 Prefab:
   m_ObjectHideFlags: 0
