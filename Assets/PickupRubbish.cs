@@ -21,7 +21,10 @@ public class PickupRubbish : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col) {
 		if (col.tag == "Player") {
 			AudioSource.PlayClipAtPoint(clip, transform.position);
-			Instantiate (safeZone, transform.position + position, Quaternion.identity);
+			GameObject newObj = Instantiate (safeZone, transform.position + position, Quaternion.identity);
+			Physics2D.IgnoreCollision (newObj.GetComponent<Collider2D>(), col, true);
+
+			Pathfinder2D.Instance.RecalculateMap ();
 			Destroy (this.gameObject);
 		}
 	}
